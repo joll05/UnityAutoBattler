@@ -8,10 +8,19 @@ public class BattleManager : MonoBehaviour
     
     public List<BattleTeam> teams;
 
+    public GameObject enemyArmy;
+
+    public bool battleActive = false;
+
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
+    }
+
+    public void RegisterTroop(Troop troop, int team)
+    {
+        teams[team].troops.Add(troop);
     }
 
     public Troop FindClosestTroop(Vector2 point, int team)
@@ -37,6 +46,18 @@ public class BattleManager : MonoBehaviour
         }
 
         return closestTroop;
+    }
+
+    public void StartBattle()
+    {
+        SpawnEnemyArmy();
+        battleActive = true;
+    }
+
+    void SpawnEnemyArmy()
+    {
+        // Temporary
+        //enemyArmy.SetActive(true);
     }
 }
 

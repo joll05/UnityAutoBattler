@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(RangerMovement))]
-public class ProjectileTroop : MonoBehaviour
+public class ProjectileTroop : BattleScript
 {
     public float attackTime = 1f;
 
@@ -24,7 +24,7 @@ public class ProjectileTroop : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void BattleUpdate()
     {
         Troop target = movement.GetTroopTarget();
 
@@ -43,5 +43,12 @@ public class ProjectileTroop : MonoBehaviour
                 projectileInstance.ProjectileInit((target.transform.position - transform.position).normalized, movement.self.team);
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue + Color.red;
+
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(TroopMovement))]
 [RequireComponent(typeof(Troop))]
-public class MeleeTroop : MonoBehaviour
+public class MeleeTroop : BattleScript
 {
     [Header("Note: Target type must be 'Troop'!")]
 
@@ -29,7 +29,7 @@ public class MeleeTroop : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void BattleUpdate()
     {
         Troop target = troopMovement.targetTroop;
 

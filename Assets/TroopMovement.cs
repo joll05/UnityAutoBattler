@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Troop))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class TroopMovement : MonoBehaviour
+public class TroopMovement : BattleScript
 {    
     public float movementForce = 3f;
 
@@ -68,7 +68,7 @@ public class TroopMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    public override void BattleFixedUpdate()
     {
         UpdateTarget();
 
