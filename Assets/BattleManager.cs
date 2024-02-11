@@ -8,9 +8,12 @@ public class BattleManager : MonoBehaviour
     
     public List<BattleTeam> teams;
 
-    public GameObject enemyArmy;
+    public Transform homeTeamParent;
+    public Transform awayTeamParent;
 
     public bool battleActive = false;
+
+    public static bool BattleActive => (instance != null) && instance.battleActive;
 
     // Start is called before the first frame update
     void Awake()
@@ -48,22 +51,33 @@ public class BattleManager : MonoBehaviour
         return closestTroop;
     }
 
-    public void StartBattle()
+    public void SpawnTeams(TeamData homeTeam, TeamData awayTeam)
     {
-        SpawnEnemyArmy();
-        battleActive = true;
+        teams.Clear();
+
+        SpawnTeam(homeTeam, homeTeamParent);
+        SpawnTeam(awayTeam, awayTeamParent);
     }
 
-    void SpawnEnemyArmy()
+    public void SpawnTeam(TeamData team, Transform parent)
     {
-        // Temporary
-        //enemyArmy.SetActive(true);
+        BattleTeam battleTeam = new BattleTeam();
+        battleTeam.team = teams.Count;
+
+        foreach (TroopPlacementData troop in team.troops)
+        {
+            GameObject instance = Instantiate(troop.troop.prefab, parent.TransformPoint(troop.position), Quaternion.identity, parent);
+            Troop troopInstance = instance.GetComponent<Troop>();
+            battleTeam.troops.Add(troopInstance);
+        }
+
+        teams.Add(battleTeam);
     }
 }
 
 [System.Serializable]
 public class BattleTeam
 {
-    public int team;
-    public List<Troop> troops;
+    public int team = -1;
+    public List<Troop> troops = new List<Troop>();
 }

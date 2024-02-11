@@ -26,9 +26,9 @@ public class Field : MonoBehaviour
 
     public void PlaceTroop(TroopData troop)
     {
-        GameObject troopObject = Instantiate(troop.prefab, targetPosition, Quaternion.identity, troopParent);
-        Troop troopScript = troopObject.GetComponent<Troop>();
-        BattleManager.instance.RegisterTroop(troopScript, 0);
+        GameObject instance = Instantiate(troop.prefab, targetPosition, Quaternion.identity, troopParent);
+        Troop troopScript = instance.GetComponent<Troop>();
+        //BattleManager.instance.RegisterTroop(troopScript, 0);
         ClearTargetPosition();
         inspectionWindow.UpdateWindow(troopScript);
         inspectionWindow.SwitchToSelf();

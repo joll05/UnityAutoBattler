@@ -6,14 +6,14 @@ public abstract class BattleScript : MonoBehaviour
 {
     void Update()
     {
-        if (BattleManager.instance.battleActive) BattleUpdate();
+        if (BattleManager.BattleActive) BattleUpdate();
     }
 
     public virtual void BattleUpdate() { }
 
     private void FixedUpdate()
     {
-        if(BattleManager.instance.battleActive) BattleFixedUpdate();
+        if(BattleManager.BattleActive) BattleFixedUpdate();
     }
 
     public virtual void BattleFixedUpdate() { }
