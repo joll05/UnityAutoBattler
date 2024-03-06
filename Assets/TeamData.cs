@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeamData
+[CreateAssetMenu(menuName = "Team Data")]
+public class TeamData : ScriptableObject
 {
     public List<TroopPlacementData> troops;
 }
 
-public class TroopPlacementData
+[System.Serializable]
+public struct TroopPlacementData
 {
     public TroopData troop;
     public Vector2 position;

@@ -18,6 +18,8 @@ public class Field : MonoBehaviour
 
     Camera cam;
 
+    List<Troop> placedTroops = new List<Troop>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +30,36 @@ public class Field : MonoBehaviour
     {
         GameObject instance = Instantiate(troop.prefab, targetPosition, Quaternion.identity, troopParent);
         Troop troopScript = instance.GetComponent<Troop>();
+        placedTroops.Add(troopScript);
         //BattleManager.instance.RegisterTroop(troopScript, 0);
         ClearTargetPosition();
         inspectionWindow.UpdateWindow(troopScript);
         inspectionWindow.SwitchToSelf();
+    }
+
+    public void SubmitTeam()
+    {
+        TeamData teamData = CreateTeamData();
+
+        GameManager.instance.MoveToBattle(teamData);
+    }
+
+    public TeamData CreateTeamData()
+    {
+        TeamData result = ScriptableObject.CreateInstance<TeamData>();
+
+        result.troops = new List<TroopPlacementData>(placedTroops.Count);
+
+        for (int i = 0; i < placedTroops.Count; i++)
+        {
+            TroopPlacementData placementData = new TroopPlacementData();
+            placementData.troop = placedTroops[i].data;
+            placementData.position = transform.InverseTransformPoint(placedTroops[i].transform.position);
+
+            result.troops.Add(placementData);
+        }
+
+        return result;
     }
 
     public void SetTargetPosition(Vector3 target)

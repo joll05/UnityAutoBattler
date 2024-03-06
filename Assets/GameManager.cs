@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    const int battleScene = 1;
 
     private void Awake()
     {
@@ -16,5 +19,14 @@ public class GameManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    [HideInInspector]
+    public TeamData userTeam;
+
+    public void MoveToBattle(TeamData team)
+    {
+        this.userTeam = team;
+        SceneManager.LoadScene(battleScene);
     }
 }
