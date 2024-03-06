@@ -10,6 +10,6 @@ public class TroopButton : MonoBehaviour
 
     public void OnClick()
     {
-        field.PlaceTroop(troop);
+        field.BuyTroop(troop);
     }
 }

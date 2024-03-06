@@ -10,4 +10,6 @@ public class TroopData : ScriptableObject
     public GameObject prefab;
 
     public Sprite image;
+
+    public int cost = 0;
 }

@@ -12,6 +12,8 @@ public class Field : MonoBehaviour
     public WindowManager windowManager;
     public UIWindow troopWindow;
     public InspectionWindow inspectionWindow;
+
+    public CurrencyManager currencyManager;
     
     bool hasTarget = false;
     Vector2 targetPosition = Vector2.zero;
@@ -24,6 +26,16 @@ public class Field : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+    }
+
+    public void BuyTroop(TroopData troop)
+    {
+        bool success = currencyManager.TrySpendMoney(troop.cost);
+
+        if(success)
+        {
+            PlaceTroop(troop);
+        }
     }
 
     public void PlaceTroop(TroopData troop)
