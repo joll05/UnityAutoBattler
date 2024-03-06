@@ -31,6 +31,6 @@ public class InspectionWindow : UIWindow
         
         Destroy(currentTroop.gameObject);
 
-        DisplayWinow(false);
+        DisplayWindow(false);
     }
 }

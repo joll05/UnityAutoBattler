@@ -14,18 +14,18 @@ public class WindowManager : MonoBehaviour
         for (int i = 0; i < windows.Length; i++)
         {
             windows[i].manager = this;
-            windows[i].DisplayWinow(false);
+            windows[i].DisplayWindow(false);
         }   
     }
 
     public void SwitchWindow(int index)
     {
-        if (currentWindow != null) currentWindow.DisplayWinow(false);
+        if (currentWindow != null) currentWindow.DisplayWindow(false);
 
         if (index >= 0)
         {
             currentWindow = windows[index];
-            currentWindow.DisplayWinow(true);
+            currentWindow.DisplayWindow(true);
         }
         else
         {
@@ -35,9 +35,9 @@ public class WindowManager : MonoBehaviour
 
     public void SwitchWindow(UIWindow window)
     {
-        if (currentWindow != null) currentWindow.DisplayWinow(false);
+        if (currentWindow != null) currentWindow.DisplayWindow(false);
 
         currentWindow = window;
-        if (currentWindow != null) currentWindow.DisplayWinow(true);
+        if (currentWindow != null) currentWindow.DisplayWindow(true);
     }
 }
