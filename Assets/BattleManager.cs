@@ -13,12 +13,51 @@ public class BattleManager : MonoBehaviour
 
     public bool battleActive = false;
 
+    public VictoryScreen victoryScreen;
+
     public static bool BattleActive => (instance != null) && instance.battleActive;
 
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
+    }
+
+    private void Update()
+    {
+        if (!battleActive) return;
+
+        int victoryStatus = CheckVictory();
+
+        if(victoryStatus != -1)
+        {
+            battleActive = false;
+            victoryScreen.ShowVictoryScreen(victoryStatus);
+        }
+    }
+
+    int CheckVictory()
+    {
+        for (int i = 0; i < teams.Count; i++)
+        {
+            bool teamDead = true;
+
+            for (int j = 0; j < teams[i].troops.Count; j++)
+            {
+                if (!teams[i].troops[j].IsDead)
+                {
+                    teamDead = false;
+                    break;
+                }
+            }
+
+            if(teamDead)
+            {
+                return (i + 1) % 2; // NOTE: Assumes there are only 2 teams
+            }
+        }
+
+        return -1;
     }
 
     public void RegisterTroop(Troop troop, int team)
