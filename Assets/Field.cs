@@ -28,6 +28,19 @@ public class Field : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+
+        if(GameManager.instance.userTeam != null)
+        {
+            List<TroopPlacementData> troops = GameManager.instance.userTeam.troops;
+
+            for (int i = 0; i < troops.Count; i++)
+            {
+                SetTargetPosition(troopParent.TransformPoint(troops[i].position));
+                BuyTroop(troops[i].troop);
+            }
+
+            windowManager.SwitchWindow(null);
+        }
     }
 
     public void BuyTroop(TroopData troop)
