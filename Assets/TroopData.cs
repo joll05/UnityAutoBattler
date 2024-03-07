@@ -11,5 +11,8 @@ public class TroopData : ScriptableObject
 
     public Sprite image;
 
+    public int health;
+    public int damage;
+
     public int cost = 0;
 }

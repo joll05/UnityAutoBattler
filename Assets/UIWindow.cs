@@ -7,7 +7,7 @@ public class UIWindow : MonoBehaviour
     [HideInInspector]
     public WindowManager manager;
 
-    public void DisplayWindow(bool visible) // Misspelled, please refactor
+    public void DisplayWindow(bool visible)
     {
         gameObject.SetActive(visible);
     }

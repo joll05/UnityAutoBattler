@@ -7,6 +7,8 @@ public class Field : MonoBehaviour
 {
     public PlacementIndicator placementIndicator;
 
+    public GameObject previewTroopPrefab;
+
     public Transform troopParent;
 
     public WindowManager windowManager;
@@ -20,7 +22,7 @@ public class Field : MonoBehaviour
 
     Camera cam;
 
-    List<Troop> placedTroops = new List<Troop>();
+    List<PreviewTroop> placedTroops = new List<PreviewTroop>();
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +42,9 @@ public class Field : MonoBehaviour
 
     public void PlaceTroop(TroopData troop)
     {
-        GameObject instance = Instantiate(troop.prefab, targetPosition, Quaternion.identity, troopParent);
-        Troop troopScript = instance.GetComponent<Troop>();
+        GameObject instance = Instantiate(previewTroopPrefab, targetPosition, Quaternion.identity, troopParent);
+        PreviewTroop troopScript = instance.GetComponent<PreviewTroop>();
+        troopScript.Initialize(troop, inspectionWindow);
         placedTroops.Add(troopScript);
         //BattleManager.instance.RegisterTroop(troopScript, 0);
         ClearTargetPosition();

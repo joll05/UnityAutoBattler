@@ -1075,6 +1075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 1794565068}
+  previewTroopPrefab: {fileID: 0}
   troopParent: {fileID: 545358856}
   windowManager: {fileID: 1761227317}
   troopWindow: {fileID: 1626582631}

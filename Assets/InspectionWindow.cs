@@ -13,15 +13,15 @@ public class InspectionWindow : UIWindow
 
     public CurrencyManager currencyManager;
 
-    Troop currentTroop;
+    PreviewTroop currentTroop;
 
-    public void UpdateWindow(Troop troop)
+    public void UpdateWindow(PreviewTroop troop)
     {
         currentTroop = troop;
 
         nameText.text = troop.data.Name;
-        healthText.text = troop.health.ToString();
-        damageText.text = troop.damage.ToString();
+        healthText.text = troop.data.health.ToString();
+        damageText.text = troop.data.damage.ToString();
         troopImage.sprite = troop.data.image;
     }
 
