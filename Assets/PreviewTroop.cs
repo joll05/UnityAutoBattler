@@ -19,7 +19,7 @@ public class PreviewTroop : MonoBehaviour
     }
 
     public void OnMouseDown()
-    {
+    {        
         inspectionWindow.UpdateWindow(this);
         inspectionWindow.SwitchToSelf();
     }

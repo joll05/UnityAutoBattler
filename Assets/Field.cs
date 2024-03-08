@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -88,6 +89,15 @@ public class Field : MonoBehaviour
         }
 
         return result;
+    }
+
+    [ContextMenu("Save Team Data")]
+    void Util_SaveTeamData()
+    {
+        TeamData data = CreateTeamData();
+        System.DateTime now = System.DateTime.Now;
+        string suffix = now.Hour.ToString("00") + now.Minute.ToString("00") + now.Second.ToString("00");
+        AssetDatabase.CreateAsset(data, string.Format("Assets/Teams/Team {0}.asset", suffix));
     }
 
     public void SetTargetPosition(Vector3 target)
