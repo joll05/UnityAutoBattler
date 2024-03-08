@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class InspectionWindow : UIWindow
 {
     public TextMeshProUGUI nameText;
-    public TextMeshProUGUI healthText;
-    public TextMeshProUGUI damageText;
+    public IconStat damageStat;
+    public IconStat attackSpeedStat;
+    public IconStat healthStat;
+    public IconStat speedStat;
     public Image troopImage;
 
     public CurrencyManager currencyManager;
@@ -20,8 +22,12 @@ public class InspectionWindow : UIWindow
         currentTroop = troop;
 
         nameText.text = troop.data.Name;
-        healthText.text = troop.data.health.ToString();
-        damageText.text = troop.data.damage.ToString();
+
+        damageStat.SetStat(troop.data.damage);
+        attackSpeedStat.SetStat(troop.data.attackSpeed);
+        healthStat.SetStat(troop.data.health);
+        speedStat.SetStat(troop.data.speed);
+
         troopImage.sprite = troop.data.image;
     }
 

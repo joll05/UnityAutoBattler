@@ -13,6 +13,8 @@ public class TroopData : ScriptableObject
 
     public int health;
     public int damage;
+    public int speed;
+    public int attackSpeed;
 
     public int cost = 0;
 }
