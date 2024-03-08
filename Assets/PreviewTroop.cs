@@ -8,10 +8,13 @@ public class PreviewTroop : MonoBehaviour
 
     public TroopData data;
 
+    Field field;
+
     InspectionWindow inspectionWindow;
 
-    public void Initialize(TroopData troop, InspectionWindow inspectionWindow)
+    public void Initialize(TroopData troop, Field field, InspectionWindow inspectionWindow)
     {
+        this.field = field;
         this.data = troop;
         this.inspectionWindow = inspectionWindow;
 
@@ -22,5 +25,10 @@ public class PreviewTroop : MonoBehaviour
     {        
         inspectionWindow.UpdateWindow(this);
         inspectionWindow.SwitchToSelf();
+    }
+
+    public void OnDestroy()
+    {
+        field.placedTroops.Remove(this);
     }
 }

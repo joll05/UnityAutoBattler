@@ -23,7 +23,8 @@ public class Field : MonoBehaviour
 
     Camera cam;
 
-    List<PreviewTroop> placedTroops = new List<PreviewTroop>();
+    [HideInInspector]
+    public List<PreviewTroop> placedTroops = new List<PreviewTroop>();
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,7 @@ public class Field : MonoBehaviour
     {
         GameObject instance = Instantiate(previewTroopPrefab, targetPosition, Quaternion.identity, troopParent);
         PreviewTroop troopScript = instance.GetComponent<PreviewTroop>();
-        troopScript.Initialize(troop, inspectionWindow);
+        troopScript.Initialize(troop, this, inspectionWindow);
         placedTroops.Add(troopScript);
         //BattleManager.instance.RegisterTroop(troopScript, 0);
         ClearTargetPosition();
