@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TournamentManager : MonoBehaviour
-{
-    public List<TeamData> teams = new List<TeamData>();
+{    
+    public TeamData[] opponentTeams;
 
     // Start is called before the first frame update
     void Start()
     {
-        teams.Add(GameManager.instance.userTeam);
+        TeamData selectedOpponent = opponentTeams[Random.Range(0, opponentTeams.Length)];
 
         // Temporary, allows me to test it
-        BattleManager.instance.SpawnTeams(teams[teams.Count - 1], teams[0]);
+        BattleManager.instance.SpawnTeams(GameManager.instance.userTeam, selectedOpponent);
     }
 }

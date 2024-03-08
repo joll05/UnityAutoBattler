@@ -695,7 +695,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243da56c9227dbd479196037fc0c5854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teams: []
+  opponentTeams:
+  - {fileID: 11400000, guid: b789adf1b38fb9348ad088c9acdb68c5, type: 2}
+  - {fileID: 11400000, guid: f2bdcb9d706feea47838789bcef59ad2, type: 2}
+  - {fileID: 11400000, guid: e3fa84f3ac1cd78478dfe99b57b12e4e, type: 2}
 --- !u!1 &721418494
 GameObject:
   m_ObjectHideFlags: 0
