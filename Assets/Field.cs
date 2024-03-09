@@ -74,6 +74,7 @@ public class Field : MonoBehaviour
         GameManager.instance.MoveToBattle(teamData);
     }
 
+
     public TeamData CreateTeamData()
     {
         TeamData result = ScriptableObject.CreateInstance<TeamData>();
@@ -92,6 +93,7 @@ public class Field : MonoBehaviour
         return result;
     }
 
+#if UNITY_EDITOR
     [ContextMenu("Save Team Data")]
     void Util_SaveTeamData()
     {
@@ -100,6 +102,7 @@ public class Field : MonoBehaviour
         string suffix = now.Hour.ToString("00") + now.Minute.ToString("00") + now.Second.ToString("00");
         AssetDatabase.CreateAsset(data, string.Format("Assets/Teams/Team {0}.asset", suffix));
     }
+#endif
 
     public void SetTargetPosition(Vector3 target)
     {
