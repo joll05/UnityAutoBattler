@@ -43,9 +43,4 @@ public class Troop : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
-    private void OnMouseUpAsButton()
-    {
-        // Inspect troop
-    }
 }
