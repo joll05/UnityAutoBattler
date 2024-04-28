@@ -9,9 +9,8 @@ public class TournamentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TeamData selectedOpponent = opponentTeams[Random.Range(0, opponentTeams.Length)];
+        TeamData selectedOpponent = GameManager.instance.playerBattle ? GameManager.instance.userTeam2 : opponentTeams[Random.Range(0, opponentTeams.Length)];
 
-        // Temporary, allows me to test it
         BattleManager.instance.SpawnTeams(GameManager.instance.userTeam, selectedOpponent);
     }
 }
