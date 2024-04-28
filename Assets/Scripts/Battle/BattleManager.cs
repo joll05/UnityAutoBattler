@@ -107,7 +107,7 @@ public class BattleManager : MonoBehaviour
         {
             GameObject instance = Instantiate(troop.troop.prefab, parent.TransformPoint(troop.position), Quaternion.identity, parent);
             Troop troopInstance = instance.GetComponent<Troop>();
-            troopInstance.team = teams.Count;
+            troopInstance.team = battleTeam.team;
             battleTeam.troops.Add(troopInstance);
         }
 

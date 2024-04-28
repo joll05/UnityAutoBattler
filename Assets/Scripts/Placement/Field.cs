@@ -74,7 +74,6 @@ public class Field : MonoBehaviour
         GameManager.instance.MoveToBattle(teamData);
     }
 
-
     public TeamData CreateTeamData()
     {
         TeamData result = ScriptableObject.CreateInstance<TeamData>();
