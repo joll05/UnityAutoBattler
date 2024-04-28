@@ -11,7 +11,11 @@ public class UploadPanel : MonoBehaviour
 
     public Button submitButton;
 
+    public TextMeshProUGUI statusText;
+
     public Field field;
+
+    bool isUploading = false;
 
     public bool ValidateInput(string userName, string teamName)
     {
@@ -23,6 +27,8 @@ public class UploadPanel : MonoBehaviour
     
     public void OnUpdate()
     {
+        if(isUploading) return;
+
         submitButton.interactable = ValidateInput(userNameInput.text, teamNameInput.text);
     }
 
@@ -35,6 +41,17 @@ public class UploadPanel : MonoBehaviour
 
         TeamData team = field.CreateTeamData();
 
-        StartCoroutine(GameManager.instance.UploadTeamData(team, userName, teamName));
+        StartCoroutine(GameManager.instance.UploadTeamData(team, userName, teamName, OnUploadComplete));
+
+        isUploading = true;
+        submitButton.interactable = false;
+        statusText.text = "Uploading...";
+    }
+
+    public void OnUploadComplete(bool success)
+    {
+        statusText.text = success ? "Team uploaded" : "Upload failed";
+        isUploading = false;
+        OnUpdate();
     }
 }

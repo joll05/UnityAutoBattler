@@ -19,4 +19,4 @@ MonoBehaviour:
   damage: 1
   speed: 5
   attackSpeed: 5
-  cost: 99
+  cost: 100

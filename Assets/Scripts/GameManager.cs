@@ -49,7 +49,9 @@ public class GameManager : MonoBehaviour
 
     private System.Uri baseUri = new System.Uri("https://infuriating-release.000webhostapp.com/");
 
-    public IEnumerator UploadTeamData(TeamData team, string userName, string teamName)
+    public delegate void UploadTeamCallback(bool success);
+    
+    public IEnumerator UploadTeamData(TeamData team, string userName, string teamName, UploadTeamCallback callback)
     {
         System.Uri uri = new System.Uri(baseUri, "upload.php");
 
@@ -61,9 +63,7 @@ public class GameManager : MonoBehaviour
         UnityWebRequest request = UnityWebRequest.Post(uri, data);
         yield return request.SendWebRequest();
 
-        Debug.Log(request.result);
-        Debug.Log(request.downloadHandler.text);
-        Debug.Log(request.url);
+        callback.Invoke(request.result == UnityWebRequest.Result.Success);
 
         request.Dispose();
     }
@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
         yield return request.SendWebRequest();
 
         callback.Invoke(JsonUtility.FromJson<TeamListData>(request.downloadHandler.text));
+
+        request.Dispose();
     }
 
     public delegate void TeamDataCallback(TeamData data);
@@ -91,5 +93,7 @@ public class GameManager : MonoBehaviour
 
         TeamData teamData = TeamData.FromJson(request.downloadHandler.text);
         callback.Invoke(teamData);
+
+        request.Dispose();
     }
 }
