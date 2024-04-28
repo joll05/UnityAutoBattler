@@ -61,7 +61,6 @@ public class Field : MonoBehaviour
         PreviewTroop troopScript = instance.GetComponent<PreviewTroop>();
         troopScript.Initialize(troop, this, inspectionWindow);
         placedTroops.Add(troopScript);
-        //BattleManager.instance.RegisterTroop(troopScript, 0);
         ClearTargetPosition();
         inspectionWindow.UpdateWindow(troopScript);
         inspectionWindow.SwitchToSelf();
@@ -74,23 +73,24 @@ public class Field : MonoBehaviour
         GameManager.instance.MoveToBattle(teamData);
     }
 
-    public TeamData CreateTeamData()
+
+public TeamData CreateTeamData()
+{
+    TeamData result = ScriptableObject.CreateInstance<TeamData>();
+
+    result.troops = new List<TroopPlacementData>(placedTroops.Count);
+
+    for (int i = 0; i < placedTroops.Count; i++)
     {
-        TeamData result = ScriptableObject.CreateInstance<TeamData>();
+        TroopPlacementData placementData = new TroopPlacementData();
+        placementData.troop = placedTroops[i].data;
+        placementData.position = troopParent.InverseTransformPoint(placedTroops[i].transform.position);
 
-        result.troops = new List<TroopPlacementData>(placedTroops.Count);
-
-        for (int i = 0; i < placedTroops.Count; i++)
-        {
-            TroopPlacementData placementData = new TroopPlacementData();
-            placementData.troop = placedTroops[i].data;
-            placementData.position = transform.InverseTransformPoint(placedTroops[i].transform.position);
-
-            result.troops.Add(placementData);
-        }
-
-        return result;
+        result.troops.Add(placementData);
     }
+
+    return result;
+}
 
 #if UNITY_EDITOR
     [ContextMenu("Save Team Data")]
