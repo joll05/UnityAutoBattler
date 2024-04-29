@@ -35,6 +35,7 @@ public class UploadPanel : MonoBehaviour
     public void OnTextareaSelect(string text)
     {
         TouchScreenKeyboard.Open(text);
+        Debug.Log("test");
     }
 
     public void OnSubmit()
