@@ -18,7 +18,7 @@ public class ProjectileTroop : BattleScript
     // Start is called before the first frame update
     void Start()
     {
-        attackTimer = Random.Range(0f, attackTime);
+        attackTimer = attackTime + Random.Range(-0.1f, 0.1f);
 
         movement = GetComponent<RangerMovement>();
     }

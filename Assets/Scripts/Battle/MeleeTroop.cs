@@ -25,7 +25,7 @@ public class MeleeTroop : BattleScript
     {
         troopMovement = GetComponent<TroopMovement>();
         troop = GetComponent<Troop>();
-        attackTimer = Random.Range(0f, attackTime);
+        attackTimer = attackTime + Random.Range(-0.1f, 0.1f);
     }
 
     // Update is called once per frame

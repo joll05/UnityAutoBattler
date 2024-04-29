@@ -32,6 +32,11 @@ public class UploadPanel : MonoBehaviour
         submitButton.interactable = ValidateInput(userNameInput.text, teamNameInput.text);
     }
 
+    public void OnTextareaSelect(string text)
+    {
+        TouchScreenKeyboard.Open(text);
+    }
+
     public void OnSubmit()
     {
         string teamName = teamNameInput.text.Trim();

@@ -96,4 +96,9 @@ public class GameManager : MonoBehaviour
 
         request.Dispose();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0)) SceneManager.LoadScene(2);
+    }
 }
